@@ -1,6 +1,7 @@
 //Global item variable
 var item = [];
 
+//Global unique id for item/task 
 let uniqueIDForTask = 0;
 
 //ADD button click function
@@ -66,5 +67,5 @@ function deleteTask(id)
             displayIncomplete();
 
           }
-     }
+     } 
 }
