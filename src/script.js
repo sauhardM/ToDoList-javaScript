@@ -87,6 +87,7 @@ function EditTask(id) {
     }
 }
 
+//Update the item/task function 
 function updateTask(id) {
 
     for (var i = 0; i < item.length; i++) 
@@ -113,6 +114,7 @@ function updateTask(id) {
 
 }
 
+//Task checked function 
 function taskChecked(id){
     for(var i=0;i<item.length;i++)
     {
@@ -136,6 +138,7 @@ function taskChecked(id){
     
 }
 
+//Task checked are displayed here. 
 function displayComplete()
 {
     document.getElementById("completed-tasks").innerHTML = "";
