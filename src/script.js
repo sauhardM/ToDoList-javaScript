@@ -61,6 +61,7 @@ function deleteTask(id) {
             //console.log("working");
             item.splice(i, 1);
             displayIncomplete();
+            displayComplete();
 
         }
     }
@@ -96,10 +97,12 @@ function updateTask(id) {
             if (item[i].completed == false) 
             {
                 displayIncomplete();
+            }else{
+                displayComplete();
             }
             html = '\
-                    <input id="new-task" type="text" value="">\
-                    <button id="addbtn">\
+                    <input id="new-task"  type="text" value="">\
+                    <button id="addbtn" onclick="add()">\
                         Add\
                     </button>\
                 ';
@@ -127,6 +130,23 @@ function taskChecked(id){
                 break
             }
         }
-    }displayIncomplete();
+    }
+    displayIncomplete();
+    displayComplete();
     
+}
+
+function displayComplete()
+{
+    document.getElementById("completed-tasks").innerHTML = "";
+    var html = "";
+    for(i=0;i<item.length;i++)
+    {
+        if(item[i].completed == true)
+        {
+            html += 
+            `<li id=` + item[i].ID + `><input  type='checkbox' id="chek" onclick=taskChecked(`+item[i].ID+`)><label>` + item[i].task + `</label><input type='text'><button onclick=EditTask(` + item[i].ID + `) class='edit'>Edit</button><button onclick=deleteTask(` + item[i].ID + `) class='delete'>Delete</button></li>`;
+        }
+    }
+    document.getElementById("completed-tasks").innerHTML = html;
 }
