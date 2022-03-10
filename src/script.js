@@ -39,7 +39,7 @@ function displayIncomplete() {
             console.log("working");
 
             html +=
-                `<li id=` + item[i].ID + `><input type='checkbox'><label>` + item[i].task + `</label><input type='text'><button onclick=EditTask(` + item[i].ID + `) class='edit'>Edit</button><button onclick=deleteTask(` + item[i].ID + `) class='delete'>Delete</button></li>`;
+                `<li id=` + item[i].ID + `><input  type='checkbox' id="chek" onclick=taskChecked(`+item[i].ID+`)><label>` + item[i].task + `</label><input type='text'><button onclick=EditTask(` + item[i].ID + `) class='edit'>Edit</button><button onclick=deleteTask(` + item[i].ID + `) class='delete'>Delete</button></li>`;
             console.log(item[i]);
         }
 
@@ -110,3 +110,23 @@ function updateTask(id) {
 
 }
 
+function taskChecked(id){
+    for(var i=0;i<item.length;i++)
+    {
+        console.log(id);
+        if(item[i].ID == id)
+        {
+            if(item[i].completed == false)
+            {
+                 item[i].completed = true;
+                 console.log(item);
+                 break;
+            }
+            else {
+                item[i].completed == false;
+                break
+            }
+        }
+    }displayIncomplete();
+    
+}
