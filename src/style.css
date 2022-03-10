@@ -84,6 +84,7 @@ input[type="text"] {
 	color: #888;
 }
 
+
 input[type="text"]:focus {
 	color: #333;
 }
@@ -100,6 +101,12 @@ input#new-task {
 	float: left;
 	width: 318px;
 }
+
+input#edit-task {
+	float: left;
+	width: 318px;
+}
+
 
 p > button:hover {
 	color: #0FC57C;
@@ -156,4 +163,9 @@ ul li.editMode input[type=text] {
 
 ul li.editMode label {
 	display: none;
+}
+
+
+#addbtn{
+	padding : 10px;
 }

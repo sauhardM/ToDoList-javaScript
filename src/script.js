@@ -7,18 +7,18 @@ let uniqueIDForTask = 0;
 //ADD button click function
 function add() {
 
-        uniqueIDForTask += 1;
-        var newTask = document.getElementById("new-task").value;
+    uniqueIDForTask += 1;
+    var newTask = document.getElementById("new-task").value;
 
-            var task = {
-                "ID": uniqueIDForTask,
-                "task": newTask,
-                "completed": false
-            };
+    var task = {
+        "ID": uniqueIDForTask,
+        "task": newTask,
+        "completed": false
+    };
 
-            item.push(task);
-            displayIncomplete();
-            clearInput();
+    item.push(task);
+    displayIncomplete();
+    clearInput();
 }
 
 //Incomplete item list display function
@@ -39,33 +39,74 @@ function displayIncomplete() {
             console.log("working");
 
             html +=
-                `<li id=` + item[i].ID + `><input type='checkbox'><label>` + item[i].task + `</label><input type='text'><button class='edit'>Edit</button><button onclick=deleteTask(`+item[i].ID+`) class='delete'>Delete</button></li>`;
+                `<li id=` + item[i].ID + `><input type='checkbox'><label>` + item[i].task + `</label><input type='text'><button onclick=EditTask(` + item[i].ID + `) class='edit'>Edit</button><button onclick=deleteTask(` + item[i].ID + `) class='delete'>Delete</button></li>`;
             console.log(item[i]);
         }
 
     }
-        incomplete.innerHTML = html;
+    incomplete.innerHTML = html;
 }
 
 //Input box cleared.
-function clearInput()
-{
+function clearInput() {
     document.getElementById("new-task").value = "";
 }
 
 //Deleting the task/item from the list 
-function deleteTask(id)
-{
-    
-     for(i=0;i<item.length;i++)
-     {
-         
-          if(item[i].ID == id)
-          {
+function deleteTask(id) {
+
+    for (i = 0; i < item.length; i++) {
+
+        if (item[i].ID == id) {
             //console.log("working");
-            item.splice(i,1);
+            item.splice(i, 1);
             displayIncomplete();
 
-          }
-     } 
+        }
+    }
 }
+
+//Editing the item/task
+function EditTask(id) {
+    var html = "";
+    document.getElementById("input-field").innerHTML = "";
+    for (i = 0; i < item.length; i++) {
+
+        if (item[i].ID == id) {
+            html = '\
+                    <input id="edit-task" type="text" value='+ item[i].task + '>\
+                    <button id="edit-task" onclick="updateTask('+ item[i].ID + ')">\
+                        Update\
+                    </button>\
+                ';
+            document.getElementById("input-field").innerHTML = html;
+            break;
+
+        }
+    }
+}
+
+function updateTask(id) {
+
+    for (var i = 0; i < item.length; i++) 
+    {
+        if (item[i].ID == id) 
+        {
+            item[i].task = document.getElementById("edit-task").value;
+            if (item[i].completed == false) 
+            {
+                displayIncomplete();
+            }
+            html = '\
+                    <input id="new-task" type="text" value="">\
+                    <button id="addbtn">\
+                        Add\
+                    </button>\
+                ';
+            document.getElementById("input-field").innerHTML = html;
+        }
+
+    }
+
+}
+
